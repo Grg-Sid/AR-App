@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2054998109314225799}
   - component: {fileID: 7720500881851177051}
   - component: {fileID: 2046242353879509425}
+  - component: {fileID: -4006373677419851805}
   m_Layer: 0
   m_Name: AR Default Plane
   m_TagString: Untagged
@@ -223,3 +224,15 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 1
+--- !u!156049354 &-4006373677419851805
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881515399753653381}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0

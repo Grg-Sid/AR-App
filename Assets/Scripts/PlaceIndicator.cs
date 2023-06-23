@@ -8,6 +8,7 @@ public class PlaceIndicator : MonoBehaviour
     private ARRaycastManager raycastManager;
     [SerializeField]
     private GameObject indicator;
+    public static Pose pose;
     //private 
     void Start()
     {
@@ -23,8 +24,11 @@ public class PlaceIndicator : MonoBehaviour
         raycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
         if(hits.Count > 0)
         {
-            transform.position = hits[0].pose.position;
-            transform.rotation = hits[0].pose.rotation;
+            pose = hits[0].pose;
+
+            transform.position = pose.position;
+            transform.rotation = pose.rotation;
+            //transform.eulerAngles = new Vector3(90, 0, 0);
 
             if (!indicator.activeInHierarchy)
             {

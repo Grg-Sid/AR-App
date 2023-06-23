@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private ARRaycastManager arRaycastManager;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    [SerializeField]
+    private GameObject pointer;
 
     private Touch touch;
     void Start()
@@ -29,14 +31,8 @@ public class InputManager : MonoBehaviour
         {
             return;
         }
-        
-        Ray ray = arCam.ScreenPointToRay(touch.position);
-        if(arRaycastManager.Raycast(ray, hits))
-        {
-             Pose pose = hits[0].pose;
-             Instantiate(DataHandler.instance.model, pose.position, pose.rotation);
-        }
-        
+             //Pose pose = hits[0].pose;
+        Instantiate(DataHandler.instance.model, PlaceIndicator.pose.position, PlaceIndicator.pose.rotation);
     }
     bool IsPointerOverUI(Touch touch)
     {
