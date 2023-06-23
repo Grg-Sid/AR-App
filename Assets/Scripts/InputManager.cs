@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using UnityEngine.XR.ARFoundation;
 
 public class InputManager : MonoBehaviour
@@ -23,6 +25,7 @@ public class InputManager : MonoBehaviour
     private Vector3 translationVector; // Translation vector for movement
     private float previousRotationAngle = 0f;
     private float currentRotationAngle = 0f;
+    private float rotateSpeed = 5f;
 
     void Update()
     {
@@ -57,6 +60,21 @@ public class InputManager : MonoBehaviour
         }
 
         // Rotation Movement
+        if (Input.touchCount == 2 && !IsPointerOverUI(Input.GetTouch(0)) && !IsPointerOverUI(Input.GetTouch(1)))
+        {
+            currentRotationAngle = Mathf.Atan((Input.GetTouch(0).position.y - Input.GetTouch(1).position.y) / (Input.GetTouch(0).position.x - Input.GetTouch(1).position.x));
+            if ((currentRotationAngle - previousRotationAngle) > 0)
+            {
+                activeObject.transform.Rotate(0, -rotateSpeed, 0);
+            }
+            if ((currentRotationAngle - previousRotationAngle) < 0)
+            {
+                activeObject.transform.Rotate(0, rotateSpeed, 0);
+            }
+        }
+
+        // Update previous rotation angle
+        previousRotationAngle = currentRotationAngle;
     }
 
     bool IsPointerOverUI(Touch touch)
